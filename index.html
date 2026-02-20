@@ -14,7 +14,6 @@
 
 body {
   background: #1A3C5A;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -26,25 +25,13 @@ body {
 /* HEADER */
 header {
   display: flex;
-  align-items: stretch;
   margin: 50px 0;
+  align-items: flex-start;
 }
 
-.logo-wrapper {
+header img {
   width: 600px;
   height: 168px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.logo-wrapper img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
   display: block;
 }
 
@@ -54,12 +41,19 @@ header {
   background: #1A3C5A;
 }
 
-/* RESPONSYWNOŚĆ */
+/* MOBILE */
 @media (max-width: 760px) {
-  .logo-wrapper {
-    width: 60%;
+  header {
+    flex-direction: column;
+  }
+
+  header img {
+    width: 100%;
     height: auto;
-    aspect-ratio: 600 / 168;
+  }
+
+  .header-bar {
+    display: none;
   }
 }
 </style>
@@ -70,11 +64,10 @@ header {
 <div class="container">
 
 <header>
-  <div class="logo-wrapper">
-    <img src="https://i.ibb.co/5XMsbRMk/logo.jpg"
-         alt="Smartfix TZ"
-         onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo';">
-  </div>
+  <img src="https://i.ibb.co/5XMsbRMk/logo.jpg"
+       alt="Smartfix TZ"
+       onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo';">
+
   <div class="header-bar"></div>
 </header>
 
