@@ -4,14 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smartfix TZ – Serwis i naprawa urządzeń</title>
-<meta name="description" content="Smartfix TZ – profesjonalny serwis i naprawa urządzeń mobilnych. Szybka diagnostyka, wymiana wyświetlaczy, naprawa płyt głównych.">
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -29,98 +24,109 @@ body {
 /* HEADER */
 header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 40px 0;
-  gap: 20px;
+  align-items: stretch;
+  margin: 50px 0;
+  gap: 0;
 }
 
 .logo {
-  max-width: 100%;
-  height: auto;
-  width: clamp(220px, 50vw, 500px);
+  width: 600px;
+  height: 168px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-.header-accent {
+.header-bar {
   flex: 1;
-  height: 6px;
-  background: #F28C38;
+  height: 168px;
+  background: #1A3C5A;
 }
 
 /* SLIDER */
-.slider-container {
+.slider-wrapper {
+  position: relative;
+  width: 700px;
+  height: 600px;
+  margin: 0 auto 60px auto;
   overflow: hidden;
-  margin: 40px 0;
-}
-
-.slider-track {
-  display: flex;
-  gap: 40px;
-  animation: scroll 80s linear infinite;
 }
 
 .slide {
-  flex: 0 0 80vw;
-  max-width: 700px;
-  aspect-ratio: 7 / 6;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
 }
 
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 8px;
 }
 
-.slider-track:hover {
-  animation-play-state: paused;
+/* Ken Burns */
+@keyframes kenburns-1 {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.1) translate(-3%, -3%); }
+}
+@keyframes kenburns-2 {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.1) translate(3%, -3%); }
+}
+@keyframes kenburns-3 {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.1) translate(-3%, 3%); }
+}
+@keyframes kenburns-4 {
+  0% { transform: scale(1) translate(0,0); }
+  100% { transform: scale(1.1) translate(3%, 3%); }
 }
 
-@keyframes scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.ken1 img { animation: kenburns-1 15s ease forwards; }
+.ken2 img { animation: kenburns-2 15s ease forwards; }
+.ken3 img { animation: kenburns-3 15s ease forwards; }
+.ken4 img { animation: kenburns-4 15s ease forwards; }
+
+/* ARROWS */
+.nav {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 5;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .slider-track {
-    animation: none;
-  }
+.nav button {
+  width: 90px;
+  height: 30px;
+  background: rgba(26,60,90,0.7);
+  border: none;
+  color: #F28C38;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* CONTENT */
-main {
-  max-width: 800px;
-  margin: 0 auto 60px;
+.nav button:hover {
+  background: rgba(26,60,90,0.9);
+  color: #FFB366;
+  transform: scale(1.1);
+}
+
+/* TEXT */
+.content {
+  max-width: 700px;
+  margin: 0 auto 60px auto;
   text-align: center;
-}
-
-h1 {
-  font-size: clamp(26px, 4vw, 36px);
-  margin-bottom: 20px;
-}
-
-p {
-  margin-bottom: 16px;
   font-size: 18px;
-}
-
-.cta {
-  margin-top: 30px;
-}
-
-.cta a {
-  display: inline-block;
-  padding: 14px 28px;
-  background: #F28C38;
-  color: #1A3C5A;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: 0.3s ease;
-}
-
-.cta a:hover {
-  opacity: 0.85;
 }
 
 /* FOOTER */
@@ -128,103 +134,85 @@ footer {
   text-align: center;
   padding: 40px 0;
   border-top: 1px solid #3a5a7a;
-  font-size: 18px;
 }
 
 footer a {
-  margin: 0 20px;
   color: #FFB366;
   text-decoration: none;
+  margin: 0 30px;
 }
 
-footer a:hover {
-  text-decoration: underline;
+@media (max-width: 760px) {
+  .slider-wrapper {
+    width: 95%;
+    height: 60vw;
+  }
+  .logo {
+    width: 50%;
+    height: auto;
+  }
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <header>
   <img src="https://i.ibb.co/5XMsbRMk/logo.jpg"
-       alt="Smartfix TZ – serwis urządzeń mobilnych"
+       alt="Smartfix TZ"
        class="logo"
-       loading="lazy">
-  <div class="header-accent"></div>
+       onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo+Error';">
+  <div class="header-bar"></div>
 </header>
 
-<section class="slider-container">
-  <div class="slider-track">
+<div class="slider-wrapper" id="slider">
 
-    <!-- Powtórzona sekwencja dla płynnej pętli -->
-    <!-- Wstaw swoje obrazy – przykładowe alt opisowe -->
-    
-    <div class="slide">
-      <img src="https://i.ibb.co/vx1VnJxz/1.jpg"
-           alt="Naprawa smartfona – wymiana wyświetlacza"
-           loading="lazy">
-    </div>
+  <!-- 32 SLIDES -->
 
-    <div class="slide">
-      <img src="https://i.ibb.co/hPHhD8k/2.jpg"
-           alt="Serwis elektroniki – diagnostyka urządzenia"
-           loading="lazy">
-    </div>
+  <div class="slide active"><img src="https://i.ibb.co/vx1VnJxz/1.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';"></div>
+  <div class="slide"><img src="https://i.ibb.co/hPHhD8k/2.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';"></div>
+  <div class="slide"><img src="https://i.ibb.co/ZZgGvsG/3.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=3';"></div>
+  <div class="slide"><img src="https://i.ibb.co/1YfdP7Pp/4.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=4';"></div>
+  <div class="slide"><img src="https://i.ibb.co/VWdFcT4C/5.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=5';"></div>
+  <div class="slide"><img src="https://i.ibb.co/dsYg51NJ/6.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=6';"></div>
+  <div class="slide"><img src="https://i.ibb.co/SwLTDBm2/7.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=7';"></div>
+  <div class="slide"><img src="https://i.ibb.co/zW338Ztm/8.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=8';"></div>
+  <div class="slide"><img src="https://i.ibb.co/tTrbzMsJ/9.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=9';"></div>
+  <div class="slide"><img src="https://i.ibb.co/tMdfR7df/10.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=10';"></div>
+  <div class="slide"><img src="https://i.ibb.co/hJLfTL4v/11.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=11';"></div>
+  <div class="slide"><img src="https://i.ibb.co/DPJZPFjP/12.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=12';"></div>
+  <div class="slide"><img src="https://i.ibb.co/YFQKtN8C/13.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=13';"></div>
+  <div class="slide"><img src="https://i.ibb.co/CsQKxcN2/14.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=14';"></div>
+  <div class="slide"><img src="https://i.ibb.co/8gTCMgGF/15.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=15';"></div>
+  <div class="slide"><img src="https://i.ibb.co/GfVs3JTh/16.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=16';"></div>
+  <div class="slide"><img src="https://i.ibb.co/yFCFz0fc/17.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=17';"></div>
+  <div class="slide"><img src="https://i.ibb.co/KjxPLrWD/18.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=18';"></div>
+  <div class="slide"><img src="https://i.ibb.co/4ZwDJjVx/19.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=19';"></div>
+  <div class="slide"><img src="https://i.ibb.co/wFWDd6Sh/20.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=20';"></div>
+  <div class="slide"><img src="https://i.ibb.co/93G6BtYJ/21.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=21';"></div>
+  <div class="slide"><img src="https://i.ibb.co/20XZyzz4/22.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=22';"></div>
+  <div class="slide"><img src="https://i.ibb.co/tTLXkTyq/23.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=23';"></div>
+  <div class="slide"><img src="https://i.ibb.co/271cht29/24.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=24';"></div>
+  <div class="slide"><img src="https://i.ibb.co/bRyvRSfY/25.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=25';"></div>
+  <div class="slide"><img src="https://i.ibb.co/rRPsTYs4/26.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=26';"></div>
+  <div class="slide"><img src="https://i.ibb.co/GvwVjGLN/27.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=27';"></div>
+  <div class="slide"><img src="https://i.ibb.co/DPdTy4C8/28.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=28';"></div>
+  <div class="slide"><img src="https://i.ibb.co/Z16qpTgV/29.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=29';"></div>
+  <div class="slide"><img src="https://i.ibb.co/qMzRMYrX/30.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=30';"></div>
+  <div class="slide"><img src="https://i.ibb.co/Pvzc7HmD/31.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=31';"></div>
+  <div class="slide"><img src="https://i.ibb.co/4yzr3km/32.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=32';"></div>
 
-    <div class="slide">
-      <img src="https://i.ibb.co/ZZgGvsG/3.jpg"
-           alt="Wymiana baterii w telefonie"
-           loading="lazy">
-    </div>
-
-    <div class="slide">
-      <img src="https://i.ibb.co/1YfdP7Pp/4.jpg"
-           alt="Naprawa płyty głównej urządzenia"
-           loading="lazy">
-    </div>
-
-    <!-- Duplikat dla płynnej animacji -->
-    
-    <div class="slide">
-      <img src="https://i.ibb.co/vx1VnJxz/1.jpg"
-           alt="Naprawa smartfona – wymiana wyświetlacza"
-           loading="lazy">
-    </div>
-
-    <div class="slide">
-      <img src="https://i.ibb.co/hPHhD8k/2.jpg"
-           alt="Serwis elektroniki – diagnostyka urządzenia"
-           loading="lazy">
-    </div>
-
-    <div class="slide">
-      <img src="https://i.ibb.co/ZZgGvsG/3.jpg"
-           alt="Wymiana baterii w telefonie"
-           loading="lazy">
-    </div>
-
-    <div class="slide">
-      <img src="https://i.ibb.co/1YfdP7Pp/4.jpg"
-           alt="Naprawa płyty głównej urządzenia"
-           loading="lazy">
-    </div>
-
+  <div class="nav">
+    <button onclick="prevSlide()">❮</button>
+    <button onclick="nextSlide()">❯</button>
   </div>
-</section>
 
-<main>
-  <h1>Profesjonalny serwis i naprawa urządzeń</h1>
+</div>
 
-  <p>Smartfix TZ specjalizuje się w naprawach smartfonów, tabletów oraz elektroniki użytkowej. Oferujemy szybką diagnostykę oraz sprawdzone rozwiązania serwisowe.</p>
-
-  <p>Wymiana wyświetlaczy, baterii, naprawy płyt głównych oraz usuwanie usterek po zalaniu – działamy sprawnie i precyzyjnie.</p>
-
-  <div class="cta">
-    <a href="tel:+48123456789">Zadzwoń teraz</a>
-  </div>
-</main>
+<div class="content">
+  <p>Smartfix TZ specjalizuje się w naprawach smartfonów i elektroniki użytkowej. Oferujemy szybką diagnostykę oraz profesjonalny serwis.</p>
+</div>
 
 <footer>
   <a href="tel:+48123456789">📞 +48 123 456 789</a>
@@ -232,6 +220,38 @@ footer a:hover {
 </footer>
 
 </div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+let interval = setInterval(nextSlide, 7000);
+
+function setKenBurns(slide) {
+  slide.classList.remove('ken1','ken2','ken3','ken4');
+  const rand = Math.floor(Math.random()*4)+1;
+  slide.classList.add('ken'+rand);
+}
+
+function showSlide(index) {
+  slides.forEach(s => {
+    s.classList.remove('active','ken1','ken2','ken3','ken4');
+  });
+  slides[index].classList.add('active');
+  setKenBurns(slides[index]);
+}
+
+function nextSlide() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+function prevSlide() {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+}
+
+showSlide(current);
+</script>
 
 </body>
 </html>
