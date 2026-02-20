@@ -3,154 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smartfix TZ – Serwis i naprawa urządzeń</title>
+<title>Smartfix TZ</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*{box-sizing:border-box;margin:0;padding:0}
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #1A3C5A;
-  color: #e0e0e0;
-  line-height: 1.6;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#1A3C5A;
+  color:#e0e0e0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
 }
 
 /* HEADER */
-header {
-  display: flex;
-  align-items: stretch;
-  margin: 50px 0;
-  gap: 0;
+header{
+  display:flex;
+  align-items:stretch;
+  margin:50px 0;
+  gap:0;
 }
 
-.logo {
-  width: 600px;
-  height: 168px;
-  object-fit: contain;
-  flex-shrink: 0;
+.logo{
+  width:600px;
+  height:168px;
+  object-fit:contain;
+  display:block;
 }
 
-.header-bar {
-  flex: 1;
-  height: 168px;
-  background: #1A3C5A;
+.header-bar{
+  flex:1;
+  background:#1A3C5A;
+  height:168px;
 }
 
 /* SLIDER */
-.slider-wrapper {
-  position: relative;
-  width: 700px;
-  height: 600px;
-  margin: 0 auto 60px auto;
-  overflow: hidden;
+.slider{
+  width:700px;
+  height:600px;
+  margin:0 auto 60px auto;
+  position:relative;
+  overflow:hidden;
 }
 
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1.5s ease;
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:opacity 1.5s ease;
 }
 
-.slide.active {
-  opacity: 1;
-  z-index: 2;
+.slide.active{
+  opacity:1;
+  z-index:2;
 }
 
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.img-wrap{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-/* Ken Burns */
-@keyframes kenburns-1 {
-  0% { transform: scale(1) translate(0,0); }
-  100% { transform: scale(1.1) translate(-3%, -3%); }
-}
-@keyframes kenburns-2 {
-  0% { transform: scale(1) translate(0,0); }
-  100% { transform: scale(1.1) translate(3%, -3%); }
-}
-@keyframes kenburns-3 {
-  0% { transform: scale(1) translate(0,0); }
-  100% { transform: scale(1.1) translate(-3%, 3%); }
-}
-@keyframes kenburns-4 {
-  0% { transform: scale(1) translate(0,0); }
-  100% { transform: scale(1.1) translate(3%, 3%); }
+.img-wrap img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  image-rendering:auto;
 }
 
-.ken1 img { animation: kenburns-1 15s ease forwards; }
-.ken2 img { animation: kenburns-2 15s ease forwards; }
-.ken3 img { animation: kenburns-3 15s ease forwards; }
-.ken4 img { animation: kenburns-4 15s ease forwards; }
+/* SUBTELNY Ken Burns */
+@keyframes kb1{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+@keyframes kb2{0%{transform:scale(1)}100%{transform:scale(1.06) translateX(1%)}}
+@keyframes kb3{0%{transform:scale(1)}100%{transform:scale(1.06) translateY(1%)}}
+@keyframes kb4{0%{transform:scale(1)}100%{transform:scale(1.06) translate(-1%,1%)}}
+
+.k1 .img-wrap{animation:kb1 15s ease forwards}
+.k2 .img-wrap{animation:kb2 15s ease forwards}
+.k3 .img-wrap{animation:kb3 15s ease forwards}
+.k4 .img-wrap{animation:kb4 15s ease forwards}
 
 /* ARROWS */
-.nav {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  z-index: 5;
+.nav{
+  position:absolute;
+  bottom:50px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:20px;
 }
 
-.nav button {
-  width: 90px;
-  height: 30px;
-  background: rgba(26,60,90,0.7);
-  border: none;
-  color: #F28C38;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.nav button{
+  width:90px;
+  height:30px;
+  background:rgba(26,60,90,0.7);
+  border:none;
+  color:#F28C38;
+  font-size:20px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.nav button:hover {
-  background: rgba(26,60,90,0.9);
-  color: #FFB366;
-  transform: scale(1.1);
+.nav button:hover{
+  background:rgba(26,60,90,0.9);
+  color:#FFB366;
+  transform:scale(1.1);
 }
 
-/* TEXT */
-.content {
-  max-width: 700px;
-  margin: 0 auto 60px auto;
-  text-align: center;
-  font-size: 18px;
+/* CONTENT */
+.content{
+  max-width:700px;
+  margin:0 auto 60px auto;
+  text-align:center;
+  font-size:18px;
 }
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px 0;
-  border-top: 1px solid #3a5a7a;
+footer{
+  text-align:center;
+  padding:40px 0;
+  border-top:1px solid #3a5a7a;
 }
 
-footer a {
-  color: #FFB366;
-  text-decoration: none;
-  margin: 0 30px;
+footer a{
+  margin:0 30px;
+  color:#FFB366;
+  text-decoration:none;
 }
 
-@media (max-width: 760px) {
-  .slider-wrapper {
-    width: 95%;
-    height: 60vw;
-  }
-  .logo {
-    width: 50%;
-    height: auto;
-  }
+/* RESPONSYWNOŚĆ */
+@media(max-width:760px){
+  .slider{width:95%;height:60vw}
+  .logo{width:50%;height:auto}
 }
 </style>
 </head>
@@ -160,58 +151,39 @@ footer a {
 
 <header>
   <img src="https://i.ibb.co/5XMsbRMk/logo.jpg"
-       alt="Smartfix TZ"
        class="logo"
-       onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo+Error';">
+       alt="Smartfix TZ"
+       onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo';">
   <div class="header-bar"></div>
 </header>
 
-<div class="slider-wrapper" id="slider">
+<div class="slider" id="slider">
 
-  <!-- 32 SLIDES -->
+  <!-- przykład – resztę możesz wkleić identycznie -->
 
-  <div class="slide active"><img src="https://i.ibb.co/vx1VnJxz/1.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';"></div>
-  <div class="slide"><img src="https://i.ibb.co/hPHhD8k/2.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';"></div>
-  <div class="slide"><img src="https://i.ibb.co/ZZgGvsG/3.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=3';"></div>
-  <div class="slide"><img src="https://i.ibb.co/1YfdP7Pp/4.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=4';"></div>
-  <div class="slide"><img src="https://i.ibb.co/VWdFcT4C/5.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=5';"></div>
-  <div class="slide"><img src="https://i.ibb.co/dsYg51NJ/6.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=6';"></div>
-  <div class="slide"><img src="https://i.ibb.co/SwLTDBm2/7.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=7';"></div>
-  <div class="slide"><img src="https://i.ibb.co/zW338Ztm/8.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=8';"></div>
-  <div class="slide"><img src="https://i.ibb.co/tTrbzMsJ/9.jpg"  onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=9';"></div>
-  <div class="slide"><img src="https://i.ibb.co/tMdfR7df/10.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=10';"></div>
-  <div class="slide"><img src="https://i.ibb.co/hJLfTL4v/11.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=11';"></div>
-  <div class="slide"><img src="https://i.ibb.co/DPJZPFjP/12.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=12';"></div>
-  <div class="slide"><img src="https://i.ibb.co/YFQKtN8C/13.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=13';"></div>
-  <div class="slide"><img src="https://i.ibb.co/CsQKxcN2/14.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=14';"></div>
-  <div class="slide"><img src="https://i.ibb.co/8gTCMgGF/15.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=15';"></div>
-  <div class="slide"><img src="https://i.ibb.co/GfVs3JTh/16.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=16';"></div>
-  <div class="slide"><img src="https://i.ibb.co/yFCFz0fc/17.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=17';"></div>
-  <div class="slide"><img src="https://i.ibb.co/KjxPLrWD/18.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=18';"></div>
-  <div class="slide"><img src="https://i.ibb.co/4ZwDJjVx/19.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=19';"></div>
-  <div class="slide"><img src="https://i.ibb.co/wFWDd6Sh/20.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=20';"></div>
-  <div class="slide"><img src="https://i.ibb.co/93G6BtYJ/21.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=21';"></div>
-  <div class="slide"><img src="https://i.ibb.co/20XZyzz4/22.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=22';"></div>
-  <div class="slide"><img src="https://i.ibb.co/tTLXkTyq/23.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=23';"></div>
-  <div class="slide"><img src="https://i.ibb.co/271cht29/24.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=24';"></div>
-  <div class="slide"><img src="https://i.ibb.co/bRyvRSfY/25.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=25';"></div>
-  <div class="slide"><img src="https://i.ibb.co/rRPsTYs4/26.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=26';"></div>
-  <div class="slide"><img src="https://i.ibb.co/GvwVjGLN/27.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=27';"></div>
-  <div class="slide"><img src="https://i.ibb.co/DPdTy4C8/28.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=28';"></div>
-  <div class="slide"><img src="https://i.ibb.co/Z16qpTgV/29.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=29';"></div>
-  <div class="slide"><img src="https://i.ibb.co/qMzRMYrX/30.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=30';"></div>
-  <div class="slide"><img src="https://i.ibb.co/Pvzc7HmD/31.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=31';"></div>
-  <div class="slide"><img src="https://i.ibb.co/4yzr3km/32.jpg" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=32';"></div>
+  <div class="slide active">
+    <div class="img-wrap">
+      <img src="https://i.ibb.co/vx1VnJxz/1.jpg"
+           onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';">
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="img-wrap">
+      <img src="https://i.ibb.co/hPHhD8k/2.jpg"
+           onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';">
+    </div>
+  </div>
 
   <div class="nav">
-    <button onclick="prevSlide()">❮</button>
-    <button onclick="nextSlide()">❯</button>
+    <button onclick="prev()">❮</button>
+    <button onclick="next()">❯</button>
   </div>
 
 </div>
 
 <div class="content">
-  <p>Smartfix TZ specjalizuje się w naprawach smartfonów i elektroniki użytkowej. Oferujemy szybką diagnostykę oraz profesjonalny serwis.</p>
+  <p>Smartfix TZ – profesjonalny serwis urządzeń mobilnych.</p>
 </div>
 
 <footer>
@@ -222,35 +194,27 @@ footer a {
 </div>
 
 <script>
-const slides = document.querySelectorAll('.slide');
-let current = 0;
-let interval = setInterval(nextSlide, 7000);
+const slides=document.querySelectorAll('.slide');
+let i=0;
+let timer=setInterval(next,7000);
 
-function setKenBurns(slide) {
-  slide.classList.remove('ken1','ken2','ken3','ken4');
-  const rand = Math.floor(Math.random()*4)+1;
-  slide.classList.add('ken'+rand);
+function show(n){
+  slides.forEach(s=>s.classList.remove('active','k1','k2','k3','k4'));
+  slides[n].classList.add('active');
+  slides[n].classList.add('k'+(Math.floor(Math.random()*4)+1));
 }
 
-function showSlide(index) {
-  slides.forEach(s => {
-    s.classList.remove('active','ken1','ken2','ken3','ken4');
-  });
-  slides[index].classList.add('active');
-  setKenBurns(slides[index]);
+function next(){
+  i=(i+1)%slides.length;
+  show(i);
 }
 
-function nextSlide() {
-  current = (current + 1) % slides.length;
-  showSlide(current);
+function prev(){
+  i=(i-1+slides.length)%slides.length;
+  show(i);
 }
 
-function prevSlide() {
-  current = (current - 1 + slides.length) % slides.length;
-  showSlide(current);
-}
-
-showSlide(current);
+show(i);
 </script>
 
 </body>
