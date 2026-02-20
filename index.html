@@ -1,161 +1,235 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smartfix TZ</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #1A3C5A;
-      color: #e0e0e0;
-      line-height: 1.6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smartfix TZ – Serwis i naprawa urządzeń</title>
+<meta name="description" content="Smartfix TZ – profesjonalny serwis i naprawa urządzeń mobilnych. Szybka diagnostyka, wymiana wyświetlaczy, naprawa płyt głównych.">
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    .header {
-      display: flex;
-      align-items: stretch;
-      margin: 50px 0;
-      gap: 0;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #1A3C5A;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
 
-    .logo {
-      width: 600px;
-      height: 168px;
-      object-fit: contain;
-      flex-shrink: 0;
-      background: #F28C38; /* pomarańczowy fallback, jeśli zdjęcie nie ładuje */
-    }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-    .sidebar {
-      flex: 1;
-      height: 168px;
-      background: #F28C38; /* wyróżnia pasek */
-    }
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0;
+  gap: 20px;
+}
 
-    .slider-container {
-      width: 100%;
-      overflow: hidden;
-      margin: 40px 0;
-    }
+.logo {
+  max-width: 100%;
+  height: auto;
+  width: clamp(220px, 50vw, 500px);
+}
 
-    .slider-track {
-      display: flex;
-      animation: scroll 120s linear infinite;
-      width: calc(700px * 64); /* 32 slajdy × 2 (duplikat dla seamless loop) */
-    }
+.header-accent {
+  flex: 1;
+  height: 6px;
+  background: #F28C38;
+}
 
-    .slide {
-      width: 700px;
-      height: 600px;
-      flex-shrink: 0;
-    }
+/* SLIDER */
+.slider-container {
+  overflow: hidden;
+  margin: 40px 0;
+}
 
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+.slider-track {
+  display: flex;
+  gap: 40px;
+  animation: scroll 80s linear infinite;
+}
 
-    @keyframes scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+.slide {
+  flex: 0 0 80vw;
+  max-width: 700px;
+  aspect-ratio: 7 / 6;
+}
 
-    .content {
-      max-width: 700px;
-      margin: 0 auto 60px;
-      text-align: center;
-      font-size: 18px;
-    }
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
 
-    .footer {
-      text-align: center;
-      padding: 40px 0;
-      font-size: 18px;
-      border-top: 1px solid #3a5a7a;
-    }
+.slider-track:hover {
+  animation-play-state: paused;
+}
 
-    .footer a {
-      margin: 0 30px;
-      color: #FFB366;
-      text-decoration: none;
-    }
-  </style>
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slider-track {
+    animation: none;
+  }
+}
+
+/* CONTENT */
+main {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(26px, 4vw, 36px);
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.cta {
+  margin-top: 30px;
+}
+
+.cta a {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #F28C38;
+  color: #1A3C5A;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.cta a:hover {
+  opacity: 0.85;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid #3a5a7a;
+  font-size: 18px;
+}
+
+footer a {
+  margin: 0 20px;
+  color: #FFB366;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
 
-  <!-- Header -->
-  <div class="header">
-    <img src="https://i.ibb.co/5XMsbRMk/logo.jpg" alt="Smartfix TZ" class="logo" onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo+nie+laduje';">
-    <div class="sidebar"></div>
-  </div>
+<header>
+  <img src="https://i.ibb.co/5XMsbRMk/logo.jpg"
+       alt="Smartfix TZ – serwis urządzeń mobilnych"
+       class="logo"
+       loading="lazy">
+  <div class="header-accent"></div>
+</header>
 
-  <!-- Infinite CSS Slider -->
-  <div class="slider-container">
-    <div class="slider-track">
-      <!-- 32 slajdy -->
-      <div class="slide"><img src="https://i.ibb.co/vx1VnJxz/1.jpg"     alt="1" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';"></div>
-      <div class="slide"><img src="https://i.ibb.co/hPHhD8k/2.jpg"      alt="2" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';"></div>
-      <div class="slide"><img src="https://i.ibb.co/ZZgGvsG/3.jpg"      alt="3" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=3';"></div>
-      <div class="slide"><img src="https://i.ibb.co/1YfdP7Pp/4.jpg"     alt="4" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=4';"></div>
-      <div class="slide"><img src="https://i.ibb.co/VWdFcT4C/5.jpg"     alt="5" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=5';"></div>
-      <div class="slide"><img src="https://i.ibb.co/dsYg51NJ/6.jpg"     alt="6" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=6';"></div>
-      <div class="slide"><img src="https://i.ibb.co/SwLTDBm2/7.jpg"     alt="7" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=7';"></div>
-      <div class="slide"><img src="https://i.ibb.co/zW338Ztm/8.jpg"     alt="8" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=8';"></div>
-      <div class="slide"><img src="https://i.ibb.co/tTrbzMsJ/9.jpg"     alt="9" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=9';"></div>
-      <div class="slide"><img src="https://i.ibb.co/tMdfR7df/10.jpg"    alt="10" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=10';"></div>
-      <div class="slide"><img src="https://i.ibb.co/hJLfTL4v/11.jpg"    alt="11" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=11';"></div>
-      <div class="slide"><img src="https://i.ibb.co/DPJZPFjP/12.jpg"    alt="12" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=12';"></div>
-      <div class="slide"><img src="https://i.ibb.co/YFQKtN8C/13.jpg"    alt="13" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=13';"></div>
-      <div class="slide"><img src="https://i.ibb.co/CsQKxcN2/14.jpg"    alt="14" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=14';"></div>
-      <div class="slide"><img src="https://i.ibb.co/8gTCMgGF/15.jpg"    alt="15" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=15';"></div>
-      <div class="slide"><img src="https://i.ibb.co/GfVs3JTh/16.jpg"    alt="16" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=16';"></div>
-      <div class="slide"><img src="https://i.ibb.co/yFCFz0fc/17.jpg"    alt="17" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=17';"></div>
-      <div class="slide"><img src="https://i.ibb.co/KjxPLrWD/18.jpg"    alt="18" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=18';"></div>
-      <div class="slide"><img src="https://i.ibb.co/4ZwDJjVx/19.jpg"    alt="19" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=19';"></div>
-      <div class="slide"><img src="https://i.ibb.co/wFWDd6Sh/20.jpg"    alt="20" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=20';"></div>
-      <div class="slide"><img src="https://i.ibb.co/93G6BtYJ/21.jpg"    alt="21" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=21';"></div>
-      <div class="slide"><img src="https://i.ibb.co/20XZyzz4/22.jpg"    alt="22" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=22';"></div>
-      <div class="slide"><img src="https://i.ibb.co/tTLXkTyq/23.jpg"    alt="23" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=23';"></div>
-      <div class="slide"><img src="https://i.ibb.co/271cht29/24.jpg"    alt="24" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=24';"></div>
-      <div class="slide"><img src="https://i.ibb.co/bRyvRSfY/25.jpg"    alt="25" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=25';"></div>
-      <div class="slide"><img src="https://i.ibb.co/rRPsTYs4/26.jpg"    alt="26" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=26';"></div>
-      <div class="slide"><img src="https://i.ibb.co/GvwVjGLN/27.jpg"    alt="27" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=27';"></div>
-      <div class="slide"><img src="https://i.ibb.co/DPdTy4C8/28.jpg"    alt="28" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=28';"></div>
-      <div class="slide"><img src="https://i.ibb.co/Z16qpTgV/29.jpg"    alt="29" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=29';"></div>
-      <div class="slide"><img src="https://i.ibb.co/qMzRMYrX/30.jpg"    alt="30" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=30';"></div>
-      <div class="slide"><img src="https://i.ibb.co/Pvzc7HmD/31.jpg"    alt="31" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=31';"></div>
-      <div class="slide"><img src="https://i.ibb.co/4yzr3km/32.jpg"    alt="32" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=32';"></div>
+<section class="slider-container">
+  <div class="slider-track">
 
-      <!-- Duplikat dla seamless loop -->
-      <div class="slide"><img src="https://i.ibb.co/vx1VnJxz/1.jpg"     alt="1" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';"></div>
-      <div class="slide"><img src="https://i.ibb.co/hPHhD8k/2.jpg"      alt="2" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';"></div>
-      <!-- ... wklej wszystkie 32 duplikaty ... -->
-      <div class="slide"><img src="https://i.ibb.co/4yzr3km/32.jpg"    alt="32" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=32';"></div>
+    <!-- Powtórzona sekwencja dla płynnej pętli -->
+    <!-- Wstaw swoje obrazy – przykładowe alt opisowe -->
+    
+    <div class="slide">
+      <img src="https://i.ibb.co/vx1VnJxz/1.jpg"
+           alt="Naprawa smartfona – wymiana wyświetlacza"
+           loading="lazy">
     </div>
-  </div>
 
-  <!-- Tekst -->
-  <div class="content">
-    <p>Witaj na stronie Smartfix TZ – specjalizujemy się w naprawach i serwisie.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  </div>
+    <div class="slide">
+      <img src="https://i.ibb.co/hPHhD8k/2.jpg"
+           alt="Serwis elektroniki – diagnostyka urządzenia"
+           loading="lazy">
+    </div>
 
-  <!-- Stopka -->
-  <div class="footer">
-    <a href="tel:+48123456789">📞 +48 123 456 789</a>
-    <a href="mailto:kontakt@smartfix-tz.pl">✉️ kontakt@smartfix-tz.pl</a>
+    <div class="slide">
+      <img src="https://i.ibb.co/ZZgGvsG/3.jpg"
+           alt="Wymiana baterii w telefonie"
+           loading="lazy">
+    </div>
+
+    <div class="slide">
+      <img src="https://i.ibb.co/1YfdP7Pp/4.jpg"
+           alt="Naprawa płyty głównej urządzenia"
+           loading="lazy">
+    </div>
+
+    <!-- Duplikat dla płynnej animacji -->
+    
+    <div class="slide">
+      <img src="https://i.ibb.co/vx1VnJxz/1.jpg"
+           alt="Naprawa smartfona – wymiana wyświetlacza"
+           loading="lazy">
+    </div>
+
+    <div class="slide">
+      <img src="https://i.ibb.co/hPHhD8k/2.jpg"
+           alt="Serwis elektroniki – diagnostyka urządzenia"
+           loading="lazy">
+    </div>
+
+    <div class="slide">
+      <img src="https://i.ibb.co/ZZgGvsG/3.jpg"
+           alt="Wymiana baterii w telefonie"
+           loading="lazy">
+    </div>
+
+    <div class="slide">
+      <img src="https://i.ibb.co/1YfdP7Pp/4.jpg"
+           alt="Naprawa płyty głównej urządzenia"
+           loading="lazy">
+    </div>
+
   </div>
+</section>
+
+<main>
+  <h1>Profesjonalny serwis i naprawa urządzeń</h1>
+
+  <p>Smartfix TZ specjalizuje się w naprawach smartfonów, tabletów oraz elektroniki użytkowej. Oferujemy szybką diagnostykę oraz sprawdzone rozwiązania serwisowe.</p>
+
+  <p>Wymiana wyświetlaczy, baterii, naprawy płyt głównych oraz usuwanie usterek po zalaniu – działamy sprawnie i precyzyjnie.</p>
+
+  <div class="cta">
+    <a href="tel:+48123456789">Zadzwoń teraz</a>
+  </div>
+</main>
+
+<footer>
+  <a href="tel:+48123456789">📞 +48 123 456 789</a>
+  <a href="mailto:kontakt@smartfix-tz.pl">✉️ kontakt@smartfix-tz.pl</a>
+</footer>
 
 </div>
 
