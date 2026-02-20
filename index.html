@@ -3,23 +3,161 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEST SLIDER</title>
+  <title>Smartfix TZ</title>
   <style>
-    body { background: #1A3C5A; color: white; margin: 0; font-family: Arial; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    .header { display: flex; margin: 50px 0; }
-    .logo { width: 600px; height: 168px; object-fit: contain; background: red; }
-    .sidebar { flex: 1; background: #F28C38; height: 168px; }
-    .slider { height: 600px; background: black; margin: 40px 0; color: white; text-align: center; padding-top: 250px; font-size: 40px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #1A3C5A;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: stretch;
+      margin: 50px 0;
+      gap: 0;
+    }
+
+    .logo {
+      width: 600px;
+      height: 168px;
+      object-fit: contain;
+      flex-shrink: 0;
+      background: #F28C38; /* pomarańczowy fallback, jeśli zdjęcie nie ładuje */
+    }
+
+    .sidebar {
+      flex: 1;
+      height: 168px;
+      background: #F28C38; /* wyróżnia pasek */
+    }
+
+    .slider-container {
+      width: 100%;
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .slider-track {
+      display: flex;
+      animation: scroll 120s linear infinite;
+      width: calc(700px * 64); /* 32 slajdy × 2 (duplikat dla seamless loop) */
+    }
+
+    .slide {
+      width: 700px;
+      height: 600px;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @keyframes scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .content {
+      max-width: 700px;
+      margin: 0 auto 60px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 18px;
+      border-top: 1px solid #3a5a7a;
+    }
+
+    .footer a {
+      margin: 0 30px;
+      color: #FFB366;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
+
 <div class="container">
+
+  <!-- Header -->
   <div class="header">
-    <img src="https://i.ibb.co/5XMsbRMk/logo.jpg" alt="Logo" class="logo">
+    <img src="https://i.ibb.co/5XMsbRMk/logo.jpg" alt="Smartfix TZ" class="logo" onerror="this.src='https://via.placeholder.com/600x168/ff0000/ffffff?text=Logo+nie+laduje';">
     <div class="sidebar"></div>
   </div>
-  <div class="slider">TEST – jeśli widzisz to, to deploy działa</div>
+
+  <!-- Infinite CSS Slider -->
+  <div class="slider-container">
+    <div class="slider-track">
+      <!-- 32 slajdy -->
+      <div class="slide"><img src="https://i.ibb.co/vx1VnJxz/1.jpg"     alt="1" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';"></div>
+      <div class="slide"><img src="https://i.ibb.co/hPHhD8k/2.jpg"      alt="2" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';"></div>
+      <div class="slide"><img src="https://i.ibb.co/ZZgGvsG/3.jpg"      alt="3" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=3';"></div>
+      <div class="slide"><img src="https://i.ibb.co/1YfdP7Pp/4.jpg"     alt="4" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=4';"></div>
+      <div class="slide"><img src="https://i.ibb.co/VWdFcT4C/5.jpg"     alt="5" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=5';"></div>
+      <div class="slide"><img src="https://i.ibb.co/dsYg51NJ/6.jpg"     alt="6" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=6';"></div>
+      <div class="slide"><img src="https://i.ibb.co/SwLTDBm2/7.jpg"     alt="7" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=7';"></div>
+      <div class="slide"><img src="https://i.ibb.co/zW338Ztm/8.jpg"     alt="8" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=8';"></div>
+      <div class="slide"><img src="https://i.ibb.co/tTrbzMsJ/9.jpg"     alt="9" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=9';"></div>
+      <div class="slide"><img src="https://i.ibb.co/tMdfR7df/10.jpg"    alt="10" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=10';"></div>
+      <div class="slide"><img src="https://i.ibb.co/hJLfTL4v/11.jpg"    alt="11" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=11';"></div>
+      <div class="slide"><img src="https://i.ibb.co/DPJZPFjP/12.jpg"    alt="12" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=12';"></div>
+      <div class="slide"><img src="https://i.ibb.co/YFQKtN8C/13.jpg"    alt="13" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=13';"></div>
+      <div class="slide"><img src="https://i.ibb.co/CsQKxcN2/14.jpg"    alt="14" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=14';"></div>
+      <div class="slide"><img src="https://i.ibb.co/8gTCMgGF/15.jpg"    alt="15" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=15';"></div>
+      <div class="slide"><img src="https://i.ibb.co/GfVs3JTh/16.jpg"    alt="16" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=16';"></div>
+      <div class="slide"><img src="https://i.ibb.co/yFCFz0fc/17.jpg"    alt="17" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=17';"></div>
+      <div class="slide"><img src="https://i.ibb.co/KjxPLrWD/18.jpg"    alt="18" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=18';"></div>
+      <div class="slide"><img src="https://i.ibb.co/4ZwDJjVx/19.jpg"    alt="19" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=19';"></div>
+      <div class="slide"><img src="https://i.ibb.co/wFWDd6Sh/20.jpg"    alt="20" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=20';"></div>
+      <div class="slide"><img src="https://i.ibb.co/93G6BtYJ/21.jpg"    alt="21" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=21';"></div>
+      <div class="slide"><img src="https://i.ibb.co/20XZyzz4/22.jpg"    alt="22" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=22';"></div>
+      <div class="slide"><img src="https://i.ibb.co/tTLXkTyq/23.jpg"    alt="23" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=23';"></div>
+      <div class="slide"><img src="https://i.ibb.co/271cht29/24.jpg"    alt="24" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=24';"></div>
+      <div class="slide"><img src="https://i.ibb.co/bRyvRSfY/25.jpg"    alt="25" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=25';"></div>
+      <div class="slide"><img src="https://i.ibb.co/rRPsTYs4/26.jpg"    alt="26" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=26';"></div>
+      <div class="slide"><img src="https://i.ibb.co/GvwVjGLN/27.jpg"    alt="27" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=27';"></div>
+      <div class="slide"><img src="https://i.ibb.co/DPdTy4C8/28.jpg"    alt="28" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=28';"></div>
+      <div class="slide"><img src="https://i.ibb.co/Z16qpTgV/29.jpg"    alt="29" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=29';"></div>
+      <div class="slide"><img src="https://i.ibb.co/qMzRMYrX/30.jpg"    alt="30" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=30';"></div>
+      <div class="slide"><img src="https://i.ibb.co/Pvzc7HmD/31.jpg"    alt="31" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=31';"></div>
+      <div class="slide"><img src="https://i.ibb.co/4yzr3km/32.jpg"    alt="32" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=32';"></div>
+
+      <!-- Duplikat dla seamless loop -->
+      <div class="slide"><img src="https://i.ibb.co/vx1VnJxz/1.jpg"     alt="1" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=1';"></div>
+      <div class="slide"><img src="https://i.ibb.co/hPHhD8k/2.jpg"      alt="2" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=2';"></div>
+      <!-- ... wklej wszystkie 32 duplikaty ... -->
+      <div class="slide"><img src="https://i.ibb.co/4yzr3km/32.jpg"    alt="32" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=32';"></div>
+    </div>
+  </div>
+
+  <!-- Tekst -->
+  <div class="content">
+    <p>Witaj na stronie Smartfix TZ – specjalizujemy się w naprawach i serwisie.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
+
+  <!-- Stopka -->
+  <div class="footer">
+    <a href="tel:+48123456789">📞 +48 123 456 789</a>
+    <a href="mailto:kontakt@smartfix-tz.pl">✉️ kontakt@smartfix-tz.pl</a>
+  </div>
+
 </div>
+
 </body>
 </html>
