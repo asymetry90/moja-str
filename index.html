@@ -52,10 +52,10 @@ header img{
 
 .slide{
   position:absolute;
-  width:100%;
-  height:100%;
+  inset:0;
   opacity:0;
   transition:opacity 1.5s ease;
+  z-index:1;
 }
 
 .slide.active{
@@ -77,7 +77,7 @@ header img{
   object-fit:contain;
 }
 
-/* SUBTELNY Ken Burns */
+/* Ken Burns */
 @keyframes kb1{0%{transform:scale(1)}100%{transform:scale(1.05)}}
 @keyframes kb2{0%{transform:scale(1)}100%{transform:scale(1.05) translateX(1%)}}
 @keyframes kb3{0%{transform:scale(1)}100%{transform:scale(1.05) translateY(1%)}}
@@ -88,7 +88,7 @@ header img{
 .k3 .img-wrap{animation:kb3 15s ease forwards}
 .k4 .img-wrap{animation:kb4 15s ease forwards}
 
-/* ARROWS */
+/* NAV */
 .nav{
   position:absolute;
   bottom:50px;
@@ -96,6 +96,7 @@ header img{
   transform:translateX(-50%);
   display:flex;
   gap:20px;
+  z-index:10;
 }
 
 .nav button{
@@ -154,9 +155,23 @@ footer a{
   <div class="header-bar"></div>
 </header>
 
-<div class="slider" id="slider">
+<div class="slider" id="slider"></div>
 
-<!-- 32 SLIDES -->
+<div class="nav">
+  <button onclick="prev()">❮</button>
+  <button onclick="next()">❯</button>
+</div>
+
+<div class="content">
+  <p>Smartfix TZ – profesjonalny serwis urządzeń mobilnych.</p>
+</div>
+
+<footer>
+  <a href="tel:+48123456789">📞 +48 123 456 789</a>
+  <a href="mailto:kontakt@smartfix-tz.pl">✉️ kontakt@smartfix-tz.pl</a>
+</footer>
+
+</div>
 
 <script>
 const images = [
@@ -194,57 +209,65 @@ const images = [
 "https://i.ibb.co/knjCvZH/9-2.jpg"
 ];
 
-const slider=document.getElementById("slider");
+const slider = document.getElementById("slider");
+let current = 0;
+let slides = new Map();
+let timer = setInterval(next,7000);
 
-images.forEach((src,i)=>{
+function createSlide(index){
+  if(slides.has(index)) return;
+
   const slide=document.createElement("div");
-  slide.className="slide"+(i===0?" active":"");
+  slide.className="slide";
+  slide.dataset.index=index;
+
   slide.innerHTML=`
     <div class="img-wrap">
-      <img src="${src}" onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=Error';">
+      <img src="${images[index]}"
+           loading="lazy"
+           decoding="async"
+           onerror="this.src='https://via.placeholder.com/700x600/ff0000/ffffff?text=Error';">
     </div>`;
   slider.appendChild(slide);
-});
+  slides.set(index,slide);
+}
 
-const slides=document.querySelectorAll(".slide");
-let current=0;
-let timer=setInterval(next,7000);
+function updateBuffer(){
+  const needed=[];
+  for(let i=-2;i<=2;i++){
+    let idx=(current+i+images.length)%images.length;
+    needed.push(idx);
+    createSlide(idx);
+  }
 
-function show(n){
-  slides.forEach(s=>s.classList.remove("active","k1","k2","k3","k4"));
-  slides[n].classList.add("active");
-  slides[n].classList.add("k"+(Math.floor(Math.random()*4)+1));
+  slides.forEach((slide,index)=>{
+    if(!needed.includes(index)){
+      slider.removeChild(slide);
+      slides.delete(index);
+    }
+  });
+
+  slides.forEach((slide,index)=>{
+    slide.classList.remove("active","k1","k2","k3","k4");
+    if(index===current){
+      slide.classList.add("active");
+      slide.classList.add("k"+(Math.floor(Math.random()*4)+1));
+    }
+  });
 }
 
 function next(){
-  current=(current+1)%slides.length;
-  show(current);
+  current=(current+1)%images.length;
+  updateBuffer();
 }
 
 function prev(){
-  current=(current-1+slides.length)%slides.length;
-  show(current);
+  current=(current-1+images.length)%images.length;
+  updateBuffer();
 }
 
-show(current);
+updateBuffer();
 </script>
 
-<div class="nav">
-  <button onclick="prev()">❮</button>
-  <button onclick="next()">❯</button>
-</div>
-
-</div>
-
-<div class="content">
-  <p>Smartfix TZ – profesjonalny serwis urządzeń mobilnych.</p>
-</div>
-
-<footer>
-  <a href="tel:+48123456789">📞 +48 123 456 789</a>
-  <a href="mailto:kontakt@smartfix-tz.pl">✉️ kontakt@smartfix-tz.pl</a>
-</footer>
-
-</div>
 </body>
 </html>
