@@ -12,12 +12,12 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   background:#1A3C5A;
   color:#e0e0e0;
+  overflow-x:hidden;
 }
 
 .container{
   max-width:1200px;
   margin:0 auto;
-  padding:0 20px;
 }
 
 /* HEADER */
@@ -28,20 +28,21 @@ header{
 
 header img{
   width:600px;
-  height:168px;
+  max-width:100%;
+  height:auto;
   object-fit:contain;
 }
 
 .header-bar{
   flex:1;
-  height:168px;
   background:#1A3C5A;
 }
 
 /* SLIDER */
 .slider{
-  width:1100px;
-  height:600px;
+  width:80%;
+  max-width:1100px;
+  aspect-ratio:11/6;
   margin:0 auto;
   position:relative;
   overflow:hidden;
@@ -51,7 +52,7 @@ header img{
 .slide{
   position:absolute;
   top:0;
-  height:600px;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -61,8 +62,8 @@ header img{
 
 /* CENTRALNY */
 .slide.active{
-  width:800px;
-  left:150px;           /* (1100-800)/2 */
+  width:72%;
+  left:14%;
   z-index:3;
   opacity:1;
   transform:scale(1);
@@ -70,8 +71,8 @@ header img{
 
 /* LEWY */
 .slide.prev{
-  width:500px;
-  left:-50px;           /* lekko wystaje */
+  width:45%;
+  left:-5%;
   z-index:2;
   opacity:0.45;
   transform:scale(0.9);
@@ -79,8 +80,8 @@ header img{
 
 /* PRAWY */
 .slide.next{
-  width:500px;
-  right:-50px;
+  width:45%;
+  right:-5%;
   z-index:2;
   opacity:0.45;
   transform:scale(0.9);
@@ -88,8 +89,8 @@ header img{
 
 /* OBRAZ */
 .slide img{
-  height:600px;   /* dopasowanie do wysokości slidera */
-  width:auto;      /* zachowanie proporcji */
+  height:100%;
+  width:auto;
   object-fit:contain;
 }
 
@@ -114,13 +115,33 @@ header img{
 }
 
 .nav button{
-  width:90px;
-  height:30px;
+  width:70px;
+  height:28px;
   background:rgba(26,60,90,0.7);
   border:none;
   color:#F28C38;
-  font-size:20px;
+  font-size:18px;
   cursor:pointer;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+  .slider{
+    width:100%;
+    aspect-ratio:4/3;
+  }
+
+  .slide.active{
+    width:100%;
+    left:0;
+  }
+
+  .slide.prev,
+  .slide.next{
+    display:none;
+  }
+
 }
 
 .content{
@@ -210,6 +231,7 @@ function next(){
   current=(current+1)%images.length;
   update();
 }
+
 function prev(){
   current=(current-1+images.length)%images.length;
   update();
