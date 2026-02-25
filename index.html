@@ -31,7 +31,6 @@ header img{
   width:600px;
   height:168px;
   object-fit:contain;
-  display:block;
 }
 
 .header-bar{
@@ -55,6 +54,7 @@ header img{
   opacity:0;
   transition:opacity 1.5s ease, transform 1.5s ease;
   z-index:1;
+  pointer-events:none;
 }
 
 /* CENTRALNY SLIDE */
@@ -72,7 +72,7 @@ header img{
   opacity:0.4;
   z-index:2;
   left:50%;
-  transform:translateX(-150%) scale(0.9);
+  transform:translateX(-110%) scale(0.9);
 }
 
 .slide.next{
@@ -80,7 +80,7 @@ header img{
   opacity:0.4;
   z-index:2;
   left:50%;
-  transform:translateX(150%) scale(0.9);
+  transform:translateX(110%) scale(0.9);
 }
 
 /* IMAGE WRAP */
@@ -90,12 +90,12 @@ header img{
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:transform 1.5s ease;
+  overflow:hidden;
 }
 
 .img-wrap img{
-  max-width:100%;
-  max-height:100%;
+  height:100%;
+  width:auto;
   object-fit:contain;
 }
 
@@ -279,6 +279,5 @@ function next(){current=(current+1)%images.length;updateBuffer();}
 function prev(){current=(current-1+images.length)%images.length;updateBuffer();}
 updateBuffer();
 </script>
-
 </body>
 </html>
